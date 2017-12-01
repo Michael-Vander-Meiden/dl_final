@@ -10,6 +10,7 @@ def select_detection(detections, uuid):
 
 def filter_detection(detections, box):
 	target = np.array([box[2]-box[0], box[3]-box[1]])
+	print(target)
 
 	candidates = [np.array([new_box[2]-new_box[0], new_box[3]-new_box[1]])
 					for new_box in detections['rois']]
