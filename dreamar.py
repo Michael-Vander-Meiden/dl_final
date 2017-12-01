@@ -11,17 +11,19 @@ import identify
 import track
 import stylize
 
+__FPS__ = '1'
+
 def video_to_frames(video_path, tmp):
   images_name = '.'.join(video_path.split('/')[-1].split('.')[:-1])
 
-  codec = ffmpy.FFmpeg(inputs={video_path: None}, outputs={tmp+'/'+images_name+'_%d.jpg': '-y -vf fps=30'})
+  codec = ffmpy.FFmpeg(inputs={video_path: None}, outputs={tmp+'/'+images_name+'_%d.jpg': '-y -vf fps='+__FPS__})
 
   codec.run()
 
 def frames_to_video(video_path, tmp):
   images_name = os.listdir(tmp)[0].split('_')[-1]
 
-  codec = ffmpy.FFmpeg(inputs={tmp+'/'+images_name+'_%d.jpg': '-r 30'}, outputs={video_path: '-c:v libx264 -vf fps=30'})
+  codec = ffmpy.FFmpeg(inputs={tmp+'/'+images_name+'_%d.jpg': '-r '+__FPS__}, outputs={video_path: '-c:v libx264 -vf fps='+__FPS__})
 
   codec.run()
 
