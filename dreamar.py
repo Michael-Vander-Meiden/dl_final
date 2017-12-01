@@ -16,14 +16,14 @@ __FPS__ = '1'
 def video_to_frames(video_path, tmp):
   images_name = '.'.join(video_path.split('/')[-1].split('.')[:-1])
 
-  codec = ffmpy.FFmpeg(inputs={video_path: None}, outputs={tmp+'/'+images_name+'_%d.jpg': '-y -vf fps='+__FPS__})
+  codec = ffmpy.FFmpeg(inputs={video_path: None}, outputs={tmp+'/'+images_name+'_%04d.jpg': '-y -vf fps='+__FPS__})
 
   codec.run()
 
 def frames_to_video(video_path, tmp):
   images_name = '.'.join(os.listdir(tmp)[0].split('/')[-1].split('_')[:-1])
 
-  codec = ffmpy.FFmpeg(inputs={tmp+'/'+images_name+'_%d.jpg': '-r '+__FPS__}, outputs={video_path: '-c:v libx264 -vf fps='+__FPS__})
+  codec = ffmpy.FFmpeg(inputs={tmp+'/'+images_name+'_%04d.jpg': '-r '+__FPS__}, outputs={video_path: '-c:v libx264 -vf fps='+__FPS__})
 
   codec.run()
 
