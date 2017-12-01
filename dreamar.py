@@ -2,6 +2,7 @@
 
 import os
 import sys
+import shutil
 import argparse
 
 import ffmpy
@@ -27,11 +28,11 @@ def frames_to_video(video_path, tmp):
 def main(src_path, dst_path, mdl, cfg, uuid):
 
   if os.path.exists(os.path.abspath('itmp')):
-    os.rmdir(os.path.abspath('itmp'))
+    shutil.rmtree(os.path.abspath('itmp'))
   os.makedirs(os.path.abspath('itmp'))
 
   if os.path.exists(os.path.abspath('otmp')):
-    os.rmdir(os.path.abspath('otmp'))
+    shutil.rmtree(os.path.abspath('otmp'))
   os.makedirs(os.path.abspath('otmp'))
 
   video_to_frames(src_path, os.path.abspath('itmp'))
