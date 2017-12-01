@@ -13,7 +13,7 @@ import model as modellib
 import visualize
 
 # Root directory of the project
-ROOT_DIR = os.getcwd()
+ROOT_DIR = '/root/Mask_RCNN'
 
 # Directory to save logs and trained model
 MODEL_DIR = os.path.join(ROOT_DIR, "logs")
@@ -60,24 +60,36 @@ class_names = ['BG', 'person', 'bicycle', 'car', 'motorcycle', 'airplane',
                'sink', 'refrigerator', 'book', 'clock', 'vase', 'scissors',
                'teddy bear', 'hair drier', 'toothbrush']
 
-# Load a random image from the images folder
-file_names = next(os.walk(IMAGE_DIR))[2]
-image = skimage.io.imread(os.path.join(IMAGE_DIR, random.choice(file_names)))
-#Here we can load our own image
-input_images_dir = 
+#Here we can load our own image 
+#image_path = 'doggies.jpg'
+#image = skimage.io.imread(image_path)
 
 # Run detection
-results = model.detect([image], verbose=1)
+#results = model.detect([image], verbose=1)
 
 # Visualize results
-r = results[0]
+#r = results[0]
 
 
 #visualize.display_instances(image, r['rois'], r['masks'], r['class_ids'], class_names, r['scores'])
 
-for item in m['class_ids']
+#for item in m['class_ids']
 
-print(r['masks'].shape)
-print(type(r['class_ids']))
-print(r['class_ids'])
-print(type(image))
+#print(r['masks'].shape)
+#print(type(r['class_ids']))
+#print(r['class_ids'])
+#print(type(image))
+
+#todo: take in list of paths, output list of image masks
+def find_masks(image_paths):
+	mask_list = list()
+	for path in image_paths:
+		image = skimage.io.imread(path)
+		results = model.detect([image],verbose=1)
+		r = results[0]
+		mask_list.append(r)
+	return mask_list
+		
+
+
+
