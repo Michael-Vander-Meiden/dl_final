@@ -37,7 +37,7 @@ def main(src_path, dst_path, mdl, cfg, uuid):
   video_to_frames(src_path, os.path.abspath('itmp'))
 
   iframes = os.listdir('itmp')
-  oframes = [iframe.sub('itmp', 'otmp') for iframe in iframes]
+  oframes = [iframe.replace('itmp', 'otmp') for iframe in iframes]
 
   all_detections = identify.get_detections(iframes)
   masks = []
