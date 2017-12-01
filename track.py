@@ -4,7 +4,9 @@ import numpy as np
 import numpy.linalg
 
 def select_detection(detections, uuid):
-	masks[min(uuid, len(masks)-1)]
+	idx = min(uuid, len(detections['masks'])-1)
+	
+	return detections['masks'][idx], detections['masks'][idx]
 
 def filter_detection(detections, box):
 	target = np.array([box[2]-box[0], box[3]-box[1]])
