@@ -11,7 +11,7 @@ import identify
 import track
 import stylize
 
-__FPS__ = '1/10'
+__FPS__ = '1'
 
 def video_to_frames(video_path, tmp):
   images_name = '.'.join(video_path.split('/')[-1].split('.')[:-1])
@@ -50,7 +50,7 @@ def main(src_path, dst_path, cfg, uuid):
 
   import pdb
   pdb.set_trace()
-  
+
   for i, i_detections in enumerate(all_detections):
     print(i)
     if i == 0:
