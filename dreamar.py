@@ -78,7 +78,7 @@ if __name__ == "__main__":
   parser.add_argument('-s', '--source',      help='video source')
   parser.add_argument('-d', '--destination', help='video destination')
   parser.add_argument('-c', '--config',      help='style config',     default='{}')
-  parser.add_argument('-u', '--uuid',        help='instance uuid',    default=1)
+  parser.add_argument('-u', '--uuid',        help='instance uuid',    default=)
 
   args = parser.parse_args()
 
