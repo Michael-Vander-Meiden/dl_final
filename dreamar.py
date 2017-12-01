@@ -53,7 +53,7 @@ def main(src_path, dst_path, cfg, uuid):
     if i == 0:
       mask, box = track.select_detection(i_detections, uuid)
     else:
-      mask, box = track.filter_detection(i_detections, box)
+      mask, box = track.filter_detection(i_detections, box, mask)
 
     masks.append(mask)
 

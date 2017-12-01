@@ -8,8 +8,9 @@ def select_detection(detections, uuid):
 	
 	return detections['masks'][idx], detections['rois'][idx]
 
-def filter_detection(detections, box):
+def filter_detection(detections, box, mask):
 	target = np.array([box[2]-box[0], box[3]-box[1]])
+	print('-----------------------------------')
 	print(target)
 
 	candidates = [np.array([new_box[2]-new_box[0], new_box[3]-new_box[1]])
@@ -18,6 +19,9 @@ def filter_detection(detections, box):
 	errors = [np.linalg.norm(target-candidate)
 				for candidate in candidates]
 
-	idx = np.argmin(errors)
+	if len(errors) > 0:
+		idx = np.argmin(errors)
 
-	return detections['masks'][idx], detections['rois'][idx]
+		return detections['masks'][idx], detections['rois'][idx]
+	else:
+		return mask, box
