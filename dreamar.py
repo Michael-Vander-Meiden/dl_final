@@ -57,9 +57,12 @@ def main(src_path, dst_path, mdl, cfg, uuid):
 
     masks.append(mask)
 
-  stylize.stylize_frame(iframes, masks, oframes, mdl, cfg)
+  stylize.stylize_frame(iframes, masks, oframes, cfg)
 
   frames_to_video(dst_path, os.path.abspath('otmp'))
+
+  shutil.rmtree(os.path.abspath('itmp'))
+  shutil.rmtree(os.path.abspath('otmp'))
 
 
 if __name__ == "__main__":
@@ -68,7 +71,6 @@ if __name__ == "__main__":
   
   parser.add_argument('-s', '--source',      help='video source')
   parser.add_argument('-d', '--destination', help='video destination')
-  parser.add_argument('-m', '--model',       help='style model',      choices=['original', 'arbitrary'])
   parser.add_argument('-c', '--config',      help='style config',     default='{}')
   parser.add_argument('-u', '--uuid',        help='instance uuid',    default=1)
 
