@@ -37,13 +37,17 @@ def main(src_path, dst_path, mdl, cfg, uuid):
 
   video_to_frames(src_path, os.path.abspath('itmp'))
 
-  iframes = os.listdir('itmp')
+  iframes = ['itmp' + iframe for iframe in os.listdir('itmp')]
   oframes = [iframe.replace('itmp', 'otmp') for iframe in iframes]
 
+  print(iframes)
+
   all_detections = identify.get_detections(iframes)
+
   masks = []
 
   for i, i_detections in enumerate(all_detections):
+    print
     if i == 0:
       mask, box = track.select_detection(i_detections, uuid)
     else:
