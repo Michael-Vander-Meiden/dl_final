@@ -21,7 +21,7 @@ def video_to_frames(video_path, tmp):
   codec.run()
 
 def frames_to_video(video_path, tmp):
-  images_name = os.listdir(tmp)[0].split('_')[-1]
+  images_name = '.'.join(os.listdir(tmp)[0].split('/')[-1].split('_')[:-1])
 
   codec = ffmpy.FFmpeg(inputs={tmp+'/'+images_name+'_%d.jpg': '-r '+__FPS__}, outputs={video_path: '-c:v libx264 -vf fps='+__FPS__})
 
