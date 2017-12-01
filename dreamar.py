@@ -48,8 +48,11 @@ def main(src_path, dst_path, cfg, uuid):
 
   masks = []
 
+  import pdb
+  pdb.set_trace()
+  
   for i, i_detections in enumerate(all_detections):
-    print
+    print(i)
     if i == 0:
       mask, box = track.select_detection(i_detections, uuid)
     else:
@@ -58,6 +61,9 @@ def main(src_path, dst_path, cfg, uuid):
     masks.append(mask)
 
   stylize.stylize_frame(iframes, masks, oframes, cfg)
+
+  if os.path.exists(os.path.abspath(dst_path)):
+    os.remove(os.path.abspath(dst_path))
 
   frames_to_video(dst_path, os.path.abspath('otmp'))
 
