@@ -17,6 +17,6 @@ def filter_detection(detections, box):
 	errors = [np.linalg.norm(target-candidate)
 				for candidate in candidates]
 
-	dx = np.argmin(errors)
+	idx = np.argmin(errors)
 
 	return detections['masks'][idx], detections['rois'][idx]
