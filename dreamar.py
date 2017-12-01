@@ -37,7 +37,7 @@ def main(src_path, dst_path, mdl, cfg, uuid):
 
   video_to_frames(src_path, os.path.abspath('itmp'))
 
-  iframes = ['itmp' + iframe for iframe in os.listdir('itmp')]
+  iframes = ['itmp/' + iframe for iframe in os.listdir('itmp')]
   oframes = [iframe.replace('itmp', 'otmp') for iframe in iframes]
 
   print(iframes)
