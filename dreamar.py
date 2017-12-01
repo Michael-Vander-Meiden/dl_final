@@ -27,7 +27,7 @@ def frames_to_video(video_path, tmp):
 
   codec.run()
 
-def main(src_path, dst_path, mdl, cfg, uuid):
+def main(src_path, dst_path, cfg, uuid):
 
   if os.path.exists(os.path.abspath('itmp')):
     shutil.rmtree(os.path.abspath('itmp'))
@@ -76,4 +76,4 @@ if __name__ == "__main__":
 
   args = parser.parse_args()
 
-  main(args.source, args.destination, args.model, eval(args.config), args.uuid)
+  main(args.source, args.destination, eval(args.config), args.uuid)
