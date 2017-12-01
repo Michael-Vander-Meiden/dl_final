@@ -81,7 +81,7 @@ class_names = ['BG', 'person', 'bicycle', 'car', 'motorcycle', 'airplane',
 #print(type(image))
 
 #todo: take in list of paths, output list of image masks
-def find_masks(image_paths):
+def get_detections(image_paths):
 	mask_list = list()
 	for path in image_paths:
 		image = skimage.io.imread(path)

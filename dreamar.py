@@ -26,15 +26,15 @@ def frames_to_video(video_path, tmp):
 
 def main(src_path, dst_path, mdl, cfg, uuid):
 
-  if os.exists(os.abspath('itmp')):
-    os.rmdi(os.abspath('itmp'))
-  os.makedirs(os.abspath('itmp'))
+  if os.path.exists(os.path.abspath('itmp')):
+    os.rmdir(os.path.abspath('itmp'))
+  os.makedirs(os.path.abspath('itmp'))
 
-  if os.exists(os.abspath('otmp')):
-    os.rmdi(os.abspath('otmp'))
-  os.makedirs(os.abspath('otmp'))
+  if os.path.exists(os.path.abspath('otmp')):
+    os.rmdir(os.path.abspath('otmp'))
+  os.makedirs(os.path.abspath('otmp'))
 
-  video_to_frames(src_path, os.abspath('itmp'))
+  video_to_frames(src_path, os.path.abspath('itmp'))
 
   iframes = os.listdir('itmp')
   oframes = [iframe.sub('itmp', 'otmp') for iframe in iframes]
@@ -52,18 +52,18 @@ def main(src_path, dst_path, mdl, cfg, uuid):
 
   stylize.stylize_frame(iframes, masks, oframes, mdl, cfg)
 
-  frames_to_video(dst_path, os.abspath('otmp'))
+  frames_to_video(dst_path, os.path.abspath('otmp'))
 
 
 if __name__ == "__main__":
   
   parser = argparse.ArgumentParser(description='Stylize a video')
   
-  parser.add_argument('-s', 'source',      help='video source')
-  parser.add_argument('-d', 'destination', help='video destination')
-  parser.add_argument('-m', 'model',       help='style model',  choices=['original', 'arbitrary'])
-  parser.add_argument('-c', 'config',      help='style config')
-  parser.add_argument('-u', 'uuid',        help='instance uuid')
+  parser.add_argument('-s', '--source',      help='video source')
+  parser.add_argument('-d', '--destination', help='video destination')
+  parser.add_argument('-m', '--model',       help='style model',      choices=['original', 'arbitrary'])
+  parser.add_argument('-c', '--config',      help='style config',     default='{}')
+  parser.add_argument('-u', '--uuid',        help='instance uuid',    default=1)
 
   args = parser.parse_args()
 
