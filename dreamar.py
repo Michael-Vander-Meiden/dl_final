@@ -7,7 +7,7 @@ import argparse
 
 import ffmpy
 
-import detect
+import identify
 import track
 import stylize
 
