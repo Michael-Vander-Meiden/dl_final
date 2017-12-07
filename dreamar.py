@@ -11,6 +11,7 @@ import identify
 import track
 import stylize
 
+
 __FPS__ = '1/10'
 
 def video_to_frames(video_path, tmp):
@@ -95,6 +96,8 @@ def main(src_path, dst_path, cfg, uuid):
 
 
 if __name__ == "__main__":
+
+  # git pull && python dreamar.py -s dogs.mp4 -d sdogs.mp4 -c '{"ckpt":"../fast-style-transfer/la_muse.ckpt", "order":"crop-style"}'
   
   parser = argparse.ArgumentParser(description='Stylize a video')
   
