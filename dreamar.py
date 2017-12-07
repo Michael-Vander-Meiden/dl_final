@@ -60,7 +60,7 @@ def main(src_path, dst_path, cfg, uuid):
   all_detections = identify.get_detections(iframes)
 
   masks = []
-  baxes = []
+  boxes = []
 
   import pdb
   pdb.set_trace()
@@ -83,6 +83,8 @@ def main(src_path, dst_path, cfg, uuid):
     stylize.stylize_frames(iframes, sframes, cfg['ckpt'])
     stylize.crop_frames(sframes, cframes, boxes)
     stylize.blend_frames(iframes, cframes, oframes, boxes, masks)
+  else:
+    raise Exception("madafaka")
 
   frames_to_video(dst_path, os.path.abspath('otmp'))
 
