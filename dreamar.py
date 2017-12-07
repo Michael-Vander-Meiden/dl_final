@@ -37,16 +37,30 @@ def main(src_path, dst_path, cfg, uuid):
     shutil.rmtree(os.path.abspath('otmp'))
   os.makedirs(os.path.abspath('otmp'))
 
+  if os.path.exists(os.path.abspath('ctmp')):
+    shutil.rmtree(os.path.abspath('ctmp'))
+  os.makedirs(os.path.abspath('ctmp'))
+
+  if os.path.exists(os.path.abspath('stmp')):
+    shutil.rmtree(os.path.abspath('stmp'))
+  os.makedirs(os.path.abspath('stmp'))
+
+  if os.path.exists(os.path.abspath(dst_path)):
+    os.remove(os.path.abspath(dst_path))
+
   video_to_frames(src_path, os.path.abspath('itmp'))
 
   iframes = ['itmp/' + iframe for iframe in os.listdir('itmp')]
   oframes = [iframe.replace('itmp', 'otmp') for iframe in iframes]
+  cframes = [iframe.replace('itmp', 'ctmp') for iframe in iframes]
+  sframes = [iframe.replace('itmp', 'stmp') for iframe in iframes]
 
   print(iframes)
 
   all_detections = identify.get_detections(iframes)
 
   masks = []
+  baxes = []
 
   import pdb
   pdb.set_trace()
@@ -59,16 +73,23 @@ def main(src_path, dst_path, cfg, uuid):
       mask, box = track.filter_detection(i_detections, box, mask)
 
     masks.append(mask)
+    boxes.append(box)
 
-  stylize.stylize_frame(iframes, masks, oframes, cfg)
-
-  if os.path.exists(os.path.abspath(dst_path)):
-    os.remove(os.path.abspath(dst_path))
+  if cfg["order"] == "crop-style":
+    stylize.crop_frames(iframes, cframes, boxes)
+    stylize.stylize_frames(cframes, sframes, cfg['ckpt'])
+    stylize.blend_frames(iframes, sframes, oframes, boxes, masks)
+  elif cfg["order"] == "style-crop":
+    stylize.stylize_frames(iframes, sframes, cfg['ckpt'])
+    stylize.crop_frames(sframes, cframes, boxes)
+    stylize.blend_frames(iframes, cframes, oframes, boxes, masks)
 
   frames_to_video(dst_path, os.path.abspath('otmp'))
 
   shutil.rmtree(os.path.abspath('itmp'))
   shutil.rmtree(os.path.abspath('otmp'))
+  shutil.rmtree(os.path.abspath('ctmp'))
+  shutil.rmtree(os.path.abspath('stmp'))
 
 
 if __name__ == "__main__":
