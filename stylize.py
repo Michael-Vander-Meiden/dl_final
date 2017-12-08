@@ -25,4 +25,4 @@ def blend_frames(iframes, cframes, oframes, boxes, masks):
         iframe = np.copy(np.asarray(Image.open(iframes[i])))
         cframe = np.copy(np.asarray(Image.open(cframes[i])))
         iframe[boxes[i][0]:boxes[i][2],boxes[i][1]:boxes[i][3],:] = cframe[0:boxes[i][2]-boxes[i][0],0:boxes[i][3]-boxes[i][1],:]
-        iframe.save(oframes[i])
+        Image.fromarray(iframe).save(oframes[i])
