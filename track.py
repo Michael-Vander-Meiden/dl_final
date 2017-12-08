@@ -7,7 +7,7 @@ import pdb
 def select_detection(detections, uuid):
     idx = min(uuid, len(detections['masks'])-1)
     pdb.set_trace()
-    return detections['masks'][:,:,idx], detections['rois'][:,:,idx]
+    return detections['masks'][:,:,idx], detections['rois'][idx]
 
 def filter_detection(detections, box, mask):
     target = np.array([box[2]-box[0], box[3]-box[1]])
@@ -21,6 +21,6 @@ def filter_detection(detections, box, mask):
     if len(errors) > 0:
         idx = np.argmin(errors)
 
-        return detections['masks'][:,:,idx], detections['rois'][:,:,idx]
+        return detections['masks'][:,:,idx], detections['rois'][idx]
     else:
         return mask, box
