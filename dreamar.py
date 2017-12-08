@@ -10,9 +10,10 @@ import ffmpy
 import identify
 import track
 import stylize
+import time 
 
 
-__FPS__ = '30'
+__FPS__ = '2'
 
 def video_to_frames(video_path, tmp):
   images_name = '.'.join(video_path.split('/')[-1].split('.')[:-1])
@@ -73,6 +74,8 @@ def main(src_path, dst_path, cfg, uuid):
     masks.append(mask)
     boxes.append(box)
 
+  start = time.time()
+
   if cfg["order"] == "crop-style":
     stylize.crop_frames(iframes, cframes, boxes)
     stylize.stylize_frames(cframes, sframes, cfg['ckpt'])
@@ -90,7 +93,8 @@ def main(src_path, dst_path, cfg, uuid):
   shutil.rmtree(os.path.abspath('otmp'))
   shutil.rmtree(os.path.abspath('ctmp'))
   shutil.rmtree(os.path.abspath('stmp'))
-
+  print(" the time it took was")
+  print (time.time - start)
 
 if __name__ == "__main__":
 
