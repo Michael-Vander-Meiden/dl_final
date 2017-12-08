@@ -63,9 +63,6 @@ def main(src_path, dst_path, cfg, uuid):
   masks = []
   boxes = []
 
-  import pdb
-  pdb.set_trace()
-
   for i, i_detections in enumerate(all_detections):
     print(i)
     if i == 0:

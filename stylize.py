@@ -14,8 +14,6 @@ def stylize_frames(iframes, sframes, ckpt):
     evaluate.ffwd_different_dimensions(iframes, sframes, ckpt, batch_size=1)
 
 def blend_frames(iframes, cframes, oframes, boxes, masks):
-    import pdb
-    pdb.set_trace()
     for i in range(len(iframes)):
         iframe = np.copy(np.asarray(Image.open(iframes[i])))
         cframe = np.zeros_like(iframe, dtype=np.uint8)
