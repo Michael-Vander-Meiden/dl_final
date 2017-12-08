@@ -90,11 +90,11 @@ def main(src_path, dst_path, cfg, uuid):
   frames_to_video(dst_path, os.path.abspath('otmp'))
 
   shutil.rmtree(os.path.abspath('itmp'))
-  shutil.rmtree(os.path.abspath('otmp'))
+  #shutil.rmtree(os.path.abspath('otmp'))
   shutil.rmtree(os.path.abspath('ctmp'))
   shutil.rmtree(os.path.abspath('stmp'))
   print(" the time it took was")
-  print (time.time - start)
+  print (time.time() - start)
 
 if __name__ == "__main__":
 
