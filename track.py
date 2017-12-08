@@ -2,11 +2,11 @@
 
 import numpy as np
 import numpy.linalg
-
+import pdb
 
 def select_detection(detections, uuid):
     idx = min(uuid, len(detections['masks'])-1)
-    
+    pdb.set_trace()
     return detections['masks'][idx], detections['rois'][idx]
 
 def filter_detection(detections, box, mask):
