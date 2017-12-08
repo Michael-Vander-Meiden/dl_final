@@ -12,7 +12,7 @@ import track
 import stylize
 
 
-__FPS__ = '1/10'
+__FPS__ = '5'
 
 def video_to_frames(video_path, tmp):
   images_name = '.'.join(video_path.split('/')[-1].split('.')[:-1])
