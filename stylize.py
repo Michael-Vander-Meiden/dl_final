@@ -17,11 +17,6 @@ def blend_frames(iframes, cframes, oframes, boxes, masks):
     import pdb
     pdb.set_trace()
     for i in range(len(iframes)):
-        #iframe = np.asarray(Image.open(iframes[i]))
-        #cframe = np.asarray(Image.open(cframes[i]))
-        #sframe = np.zeros_like(iframe)
-        #sframe[boxes[i][0]:boxes[i][2],boxes[i][1]:boxes[i][3],:] = cframe[0:boxes[i][2]-boxes[i][0],0:boxes[i][3]-boxes[i][1],:]
-        #Image.composite(Image.fromarray(iframe), Image.fromarray(sframe), Image.fromarray(masks[i])).save(oframes[i])
         iframe = np.copy(np.asarray(Image.open(iframes[i])))
         cframe = np.copy(np.asarray(Image.open(cframes[i])))
         iframe[boxes[i][0]:boxes[i][2],boxes[i][1]:boxes[i][3],:] = cframe[0:boxes[i][2]-boxes[i][0],0:boxes[i][3]-boxes[i][1],:]
